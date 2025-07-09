@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexbox Froggy Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      background: linear-gradient(to bottom, #5cc8a8 0%, #348f70 100%);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    #subheader {
+      text-align: center;
+      padding: 0.5rem 2rem 1rem;
+      font-size: 1.1rem;
+      color: #e0f7fa;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    #container {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+
+    #pond {
+      background: linear-gradient(to right, #88d4bd, #4a9f87);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem;
+      flex: 1;
+      margin: 1rem;
+      position: relative;
+    }
+
+    .frog, .lilypad {
+      width: 80px;
+      height: 80px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 10px;
+    }
+
+    .frog {
+      background-image: url('https://flexboxfroggy.com/images/frog-green.svg');
+    }
+
+    .lilypad {
+      background-image: url('https://flexboxfroggy.com/images/lilypad-green.svg');
+    }
+
+    #editor-area {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #code-block {
+      background: #263238;
+      color: #fff;
+      font-family: monospace;
+      padding: 1rem;
+      border-radius: 5px;
+      flex-grow: 1;
+    }
+
+    .selector {
+      color: #7ec699;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-family: monospace;
+      font-size: 1rem;
+      resize: none;
+      outline: none;
+    }
+
+    #run {
+      margin-top: 1rem;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    #run:hover {
+      background-color: #27ae60;
+    }
+
+    #instructions {
+      margin-top: 1rem;
+      background: rgba(0,0,0,0.2);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    #hint {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #e0f7fa;
+      line-height: 1.5;
+    }
+
+    code {
+      background: rgba(0,0,0,0.3);
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>Flexbox Froggy</header>
+  <div id="subheader">
+    Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide the frogs to their lilypads by using the correct flexbox properties.
+  </div>
+  <div id="container">
+    <div id="pond">
+      <div class="lilypad"></div>
+      <div class="lilypad"></div>
+      <div class="lilypad"></div>
+      <div class="frog"></div>
+      <div class="frog"></div>
+      <div class="frog"></div>
+    </div>
+    <div id="editor-area">
+      <div id="code-block">
+        <p><span class="selector">#pond {</span></p>
+        <textarea id="cssInput" placeholder="  justify-content: center;"></textarea>
+        <p><span class="selector">}</span></p>
+      </div>
+      <button id="run">Run</button>
+      <div id="instructions">
+        <h3>Level 1</h3>
+        <p>Use <code>justify-content</code> to center the frogs on the lilypads.</p>
+        <div id="hint">
+          <p>The frogs are using <code>flex-start</code> by default, which aligns items to the start of the flex container. Try using <code>justify-content: center;</code> to align them in the center.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("run").addEventListener("click", () => {
+      const css = document.getElementById("cssInput").value;
+      const pond = document.getElementById("pond");
+      pond.style.cssText = "";
+      try {
+        pond.style.cssText = css;
+      } catch (e) {
+        alert("Invalid CSS!");
+      }
+    });
+  </script>
+</body>
+</html>
